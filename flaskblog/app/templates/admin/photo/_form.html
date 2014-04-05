@@ -1,0 +1,36 @@
+{% if form.errors %}
+<div class="error-div col-lg-offset-3">
+	{% for key in form.errors %}
+		{%for error in form.errors[key] %}
+	<div class="alert alert-danger">{{ error }}</div>
+		{% endfor %}
+	{% endfor %}
+</div>
+{% endif %}
+<div class="form-group">
+	{{ form.album_id.label(class='col-lg-2 control-label') }}
+	<div class="col-lg-2">
+		{{ form.album_id(class='form-control' ) }}
+	</div>
+</div>
+<div class="form-group">
+	{{ form.title.label(class='col-lg-2 control-label') }}
+	<div class="col-lg-5">
+		{{ form.title(class='form-control', placeholder='标题' ) }}
+	</div>
+</div>
+<div class="form-group">
+	{{ form.photo_image.label(class='col-lg-2 control-label') }}
+	<div class="col-lg-8">
+		{{ form.photo_image() }}
+		{% if photo and photo.renderImage('t') %}<br/><img src="{{ photo.renderImage('t') }}" />{% endif %}
+		{% if photo and photo.renderImage('m') %}<br/><img src="{{ photo.renderImage('m') }}" />{% endif %}
+		{% if photo and photo.renderImage('l') %}<br/><img src="{{ photo.renderImage('l') }}" />{% endif %}
+		{% if photo and photo.renderImage('xl') %}<br/><img src="{{ photo.renderImage('xl') }}" />{% endif %}
+	</div>
+</div>
+<div class="form-group">
+	<div class="col-lg-offset-2 col-lg-10">
+		<button name="" type="submit" class="btn btn-primary">提交</button>
+	</div>
+</div>

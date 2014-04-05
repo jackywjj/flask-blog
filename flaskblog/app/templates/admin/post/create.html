@@ -1,0 +1,20 @@
+{% extends "admin/_base.html" %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block content %}
+<h2>博客文章 <small>新建</small></h2>
+<div class="clearfix">
+	<a href="/admin/post/{% if data['category_id'] %}?category_id={{ data['category_id'] }}{% endif %}" class="btn btn-primary pull-right">返回</a>
+</div>
+<div class="table-responsive">
+	<div class="row">
+		<div class="col-lg-12">
+			<form method="POST" action="/admin/post/create/{% if data['category_id'] %}?category_id={{ data['category_id'] }}{% endif %}" class="form-horizontal" enctype="multipart/form-data">
+			{% include 'admin/post/_form.html' %}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

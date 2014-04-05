@@ -1,0 +1,70 @@
+{% extends "admin/_base.html" %}
+{% block head %}
+	{{ super() }}
+	<script type="text/javascript" src="{{ url_for('static', filename='admin/js/post.js') }}"></script>
+{% endblock %}
+{% block content %}
+<h1>博客文章 <small>列表</small></h1>
+<div class="clearfix">
+    <a href="/admin/post/create/{% if data['category_id'] %}?category_id={{ data['category_id'] }}{% endif %}" class="btn btn-primary pull-right">新建文章</a>
+</div>
+<div class="table-responsive">
+	<div class="row form-group">
+		<div class="col-lg-2">
+			<select name="" id="" class="form-control essay-category">
+				{% for category in data['categories'] %}
+				<option value="{{ category.id }}" {% if (category.id == data['category_id']) %} selected="true"{% endif %}>{{ category.title }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>类别</th>
+            <th>标题</th>
+            <th>新建于</th>
+			<th>更新于</th>
+            <th>状态</th>
+            <th colspan="3">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for post in posts.items %}
+        <tr>
+            <td>{{ post.id}}</td>
+            <td>{{ post.category.title}}</td>
+            <td>{{ post.title}}</td>
+            <td>{{ post.created_at}}</td>
+			<td>{{ post.updated_at}}</td>
+            <td>
+            {% if post.status == 0 %}
+                <a href="/admin/post/{{ post.id }}/status/?page={{ page }}&category_id={{ category_id }}">Disable</a>
+            {% elif post.status == 1 %}
+                <a href="/admin/post/{{ post.id }}/status/?page={{ page }}&category_id={{ category_id }}">Enable</a>
+            {% endif %}
+            </td>
+            <td><a href="/admin/post/{{ post.id }}/edit/?page={{ page }}&category_id={{ category_id }}">Modify</a></td>
+            <td><a href="/admin/post/{{ post.id }}/delete/?page={{ page }}&category_id={{ category_id }}" class="delete">Delete</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+	<div class="digg_pagination pull-right clearfix">
+        <div class=pagination>
+        {% for page in posts.iter_pages() %}
+            {% if page %}
+                {% if page != posts.page %}
+                <a href="{{ url_for('admin.postIndex', page=page, category_id=category_id) }}">{{ page }}</a>
+                {% else %}
+                <strong>{{ page }}</strong>
+                {% endif %}
+                {% else %}
+                <span class=ellipsis>…</span>
+            {% endif %}
+        {% endfor %}
+        </div>
+	</div>
+</div>
+{% endblock %}

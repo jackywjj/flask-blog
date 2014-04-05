@@ -1,0 +1,20 @@
+{% extends "admin/_base.html" %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block content %}
+<h2>相册 <small>新建</small></h2>
+<div class="clearfix">
+	<a href="/admin/album/" class="btn btn-primary pull-right">返回</a>
+</div>
+<div class="table-responsive">
+	<div class="row">
+		<div class="col-lg-6">
+			<form method="POST" action="/admin/album/create/" class="form-horizontal">
+			{% include 'admin/album/_form.html' %}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

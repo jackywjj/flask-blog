@@ -1,0 +1,58 @@
+{% extends "_base.html" %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="row page-content">
+	<div class="col-md-9">
+		{% if posts %}
+			{% for post in posts%}
+		<div class="post-block">
+			<article class="post substrate">
+				<h3><a href="/blog/{{ post.id }}/">{{ post.title }}</a></h3>
+				<div class="post-meta last-meta">发表于 ：{{ post.created_at }}</div>
+				<div class="post-desc-wrap clearfix">
+					{% if post.post_image %}
+					<div class="post-desc-left">
+	            		<img class="blog-image" alt="{{ post.title }}" title ="{{ post.title }}" src="{{ post.renderImage() }}" />
+					</div>
+					<div class="post-desc-right">{% filter markdown %}{{ post.summary|safe }}{% endfilter %}</div>
+					{% else %}
+					{% filter markdown %}{{ post.summary|safe }}{% endfilter %}
+					{% endif %}
+					<div class="clearfix"><a href="/blog/{{ post.id }}/" class="pull-right">阅读更多...</a></div>
+				</div>
+			</article>
+		</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div class="col-md-3">
+		<div class="post-block">
+			<div class="substrate widget">
+				<h3>分类</h3>
+				<ul>
+					{% if categories %}
+						{% for category in categories%}
+					<li><a title="{{ category.title }}" href="/blog/category/{{ category.id }}">{{ category.title }}</a></li>
+						{% endfor %}
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		<div class="post-block">
+			<div class="substrate widget">
+				<h3>归档</h3>
+				<ul>
+					{% if dates %}
+						{% for date in dates%}
+					<li><a title="{{ date.created_month }}" href="/blog/archive/{{ date.created_month }}">{{ date.created_month }}</a></li>
+						{% endfor %}
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

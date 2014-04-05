@@ -1,0 +1,299 @@
+html,body {
+	background: url("/images/background.jpg") repeat scroll 0 0 #DCDFE2;
+	overflow-y: scroll;
+}
+a {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}
+ol, ul {
+	list-style: none outside none;
+}
+li {
+	padding: 0px;
+	margin: 0px;
+}
+#content-wrap {
+	background: url("/images/bg.jpg") repeat scroll 0 0 #F8F8F8;
+	border-radius: 20px 20px 20px 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	margin: 50px auto 50px;
+	position: relative;
+	z-index: 0;
+}
+/*Page header*/
+.page-crumbmenu {
+	font-size: 22px;
+	color: #FFFFFF;
+	line-height: 50px;
+	padding-left: 10px;
+}
+.page-title-wrap {
+	color: #999999;
+}
+.page-title-wrap h2 {
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 0px;
+}
+.page-title-wrap h2 a {
+	color: #666666;
+}
+.page-title-wrap h2 a:hover {
+	color: #000000;
+}
+.page-subtitle {
+	padding-left: 15px;
+}
+/*page navigator*/
+#page-nav {
+}
+#page-nav ul {
+	height: 110px;
+	margin-bottom: 0px;
+}
+#page-nav ul li {
+	float: left;
+	margin-right: 10px;
+	text-align: -webkit-match-parent;
+}
+#page-nav ul li.red {
+	background: #d74747; /* Old browsers */
+	background: -moz-linear-gradient(top,  #d74747 0%, #b82c2c 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d74747), color-stop(100%,#b82c2c)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #d74747 0%,#b82c2c 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #d74747 0%,#b82c2c 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #d74747 0%,#b82c2c 100%); /* IE10+ */ 
+	background: linear-gradient(to bottom,  #d74747 0%,#b82c2c 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d74747', endColorstr='#b82c2c',GradientType=0 ); /* IE6-9 */
+}
+#page-nav ul li.blue {
+	background: #479cd7; /* Old browsers */
+	background: -moz-linear-gradient(top,  #479cd7 0%, #2c7eb8 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#479cd7), color-stop(100%,#2c7eb8)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #479cd7 0%,#2c7eb8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #479cd7 0%,#2c7eb8 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #479cd7 0%,#2c7eb8 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #479cd7 0%,#2c7eb8 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#479cd7', endColorstr='#2c7eb8',GradientType=0 ); /* IE6-9 */
+}
+#page-nav ul li.green {
+	background: #a9d747; /* Old browsers */
+	background: -moz-linear-gradient(top,  #a9d747 0%, #88b82c 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a9d747), color-stop(100%,#88b82c)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #a9d747 0%,#88b82c 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #a9d747 0%,#88b82c 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #a9d747 0%,#88b82c 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #a9d747 0%,#88b82c 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a9d747', endColorstr='#88b82c',GradientType=0 ); /* IE6-9 */
+}
+#page-nav ul li.yellow{
+	background: #f0cb49; /* Old browsers */
+	background: -moz-linear-gradient(top,  #f0cb49 0%, #e0a637 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0cb49), color-stop(100%,#e0a637)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #f0cb49 0%,#e0a637 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #f0cb49 0%,#e0a637 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #f0cb49 0%,#e0a637 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #f0cb49 0%,#e0a637 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0cb49', endColorstr='#e0a637',GradientType=0 ); /* IE6-9 */
+}
+#page-nav ul li.violet{
+	background: #a727dc; /* Old browsers */
+	background: -moz-linear-gradient(top,  #a727dc 0%, #8d1bd1 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a727dc), color-stop(100%,#8d1bd1)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #a727dc 0%,#8d1bd1 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #a727dc 0%,#8d1bd1 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #a727dc 0%,#8d1bd1 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #a727dc 0%,#8d1bd1 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a727dc', endColorstr='#8d1bd1',GradientType=0 ); /* IE6-9 */
+}
+.page-nav-menu-red {
+	height: 50px;
+	background: none repeat scroll 0 0 #b82c2c;
+}
+.page-nav-menu-blue {
+	height: 50px;
+	background: none repeat scroll 0 0 #2c7eb8;
+}
+.page-nav-menu-green {
+	height: 50px;
+	background: none repeat scroll 0 0 #88B82C;
+}
+.page-nav-menu-violet {
+	height: 50px;
+	background: none repeat scroll 0 0 #8d1bd1;
+}
+#page-nav ul li a.active {
+	height: 110px;
+	display: block;
+}
+#page-nav ul li a.active .page-nav-menutext {
+	bottom: 5px;
+	color: #FFFFFF;
+}
+#page-nav ul li a.active:hover {
+	height: 110px;
+	display: block;
+}
+#page-nav ul li a:hover {
+	height: 110px;
+	display: block;
+}
+#page-nav ul li a:hover .page-nav-menutext {
+	bottom: 5px;
+	color: #FFFFFF;
+}
+#page-nav ul li a {
+	color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    height: 88px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    -webkit-transition: height 0.5s;
+	-moz-transition: height 0.5s;
+	-o-transition: height 0.5s;
+	transition: height 0.5s;
+}
+.page-nav-icon{
+}
+.page-nav-icon img{
+	padding: 20px;
+}
+.page-nav-menutext {
+	position: absolute;
+	bottom: -30px;
+	width: 88px;
+	transition:all 0.3s ease-in-out 0s;
+	font-size: 20px;
+}
+/*Blog*/
+.page-content {
+	margin-top: 30px;
+}
+.post-block {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.post-block h2 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.post-block .post-meta {
+	padding: 10px 0px;
+}
+.post-block .post-meta-fix {
+	margin-left: 40px;
+	margin-right: 40px;
+}
+.post-desc-wrap {
+
+}
+.post-desc-left {
+	float: left;
+	width: 335px;
+}
+.post-desc-right {
+	float: left;
+	width: 55%;
+}
+.post-content{
+	padding-top: 20px;
+}
+.post-backbtn {
+	float: right;
+}
+.substrate {
+	width: 100%;
+}
+.substrate:before, .form-submit input:before {
+	bottom: 30px;
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.3);
+    content: "";
+    height: 20%;
+    left: auto;
+    position: absolute;
+    right: 5px;
+    transform: rotate(3deg);
+    width: 95%;
+    z-index: -1;
+}
+.substrate, .form-submit input {
+	background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    display: block;
+    margin-bottom: 30px;
+    padding: 15px 20px;
+    position: relative;
+}
+/*Album*/
+.album-wrap {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: auto;
+	min-height: 600px;
+}
+.album-wrap ul { padding-left: 20px; padding-right: 10px; }
+.album-wrap ul li {
+	float: left;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	height: 85px;
+}
+#gallery {
+	margin: 20px auto;
+    padding: 50px 100px;
+    background: #efefef;
+}
+.ad-gallery {
+}
+.ad-thumb-list {
+	padding: 0px!important;
+}
+.ad-gallery .ad-back {
+  left: -20px;
+  width: 13px;
+  background: url(your_back_button.png) no-repeat;
+}
+.ad-gallery .ad-forward {
+  right: -20px;
+  width: 13px;
+  background: url(your_forward_button.png) no-repeat;
+}
+/*aboutme*/
+.aboutme-content {
+	font-size: 15px;
+	padding-top: 20px;
+	padding-bottom: 50px;
+}
+.aboutme-content p {
+	text-indent:20px;
+}
+.widget {
+}
+.widget h3 {
+	font-size: 16px;
+	margin: 0 0 10px;
+	font-weight: 500;
+	padding-left: 20px;
+	line-height: 35px;
+}
+.widget ul {
+	padding-left: 20px;
+}
+.widget ul li {
+	line-height: 30px;
+}
+/*footer*/
+.footer {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+.footer p {
+	padding-left: 10px;
+	color: #999999;
+}
