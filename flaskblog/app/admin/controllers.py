@@ -16,6 +16,15 @@ admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 # globale variables
 data = {}
+@admin.before_request
+def before_request():
+	if 'admin/login' in request.url_rule.rule:
+		pass
+	else:
+		if 'user_id' in session:
+			pass
+		else:
+			return redirect(url_for('admin.adminLogin'))
 
 # Set the route and accepted methods
 @admin.route('/', methods=['GET', 'POST'])
@@ -26,8 +35,9 @@ def adminLogin():
 		return redirect(url_for('admin.categoryIndex'))
 	return render_template("admin/login.html",form=form)
 
-@admin.route('/logout/', methods='GET')
+@admin.route('/logout/')
 def adminLogout():
+	session.pop('user_id', None)
 	return redirect(url_for('admin.adminLogin'))
 '''
 Category controllers
