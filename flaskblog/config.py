@@ -2,8 +2,6 @@
 DEBUG = False
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))  
-#SQLALCHEMY_DATABASE_URI = 'mysql://root:jacky@mysql9981@127.0.0.1/flaskblogdb'
-#SQLALCHEMY_DATABASE_URI = 'mysql://root:admin123456@127.0.0.1/flaskblogdb'
 SQLALCHEMY_DATABASE_URI = 'mysql://username:password@host/dbname'
 DATABASE_CONNECT_OPTIONS = {}
 
