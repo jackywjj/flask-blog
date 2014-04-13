@@ -1,9 +1,11 @@
 # coding=utf8
+# Import flask dependencies
 from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask import Markup
 
 from app import db
 from app.models.models import *
+from app.models.forms import CommentForm
 main = Blueprint('main', __name__, url_prefix='/')
 
 @main.route('')
@@ -27,10 +29,18 @@ def archive(month):
 	dates = db.session.query(Post, "created_month").group_by("created_month").all()
 	return render_template("blog/index.html", categories=categories, posts=posts, dates=dates)
 	
-@main.route('blog/<id>/')
+@main.route('blog/<id>/', methods=['GET', 'POST'])
 def detail(id):
+	form = CommentForm(request.form)
+	if request.method == "POST" and form.validate():
+		comment = Comment(form.user_name.data, form.message.data, id)
+		db.session.add(comment)
+		db.session.commit()
+		flash(u'感谢您的留言！')
+		return redirect(url_for('main.detail', id=id))
 	post = Post.query.get(id)
-	return render_template("blog/detail.html", post=post)
+	comments = Comment.query.filter_by(post_id=id).order_by("-id").all()
+	return render_template("blog/detail.html", post=post, form=form, comments=comments)
 
 @main.route('album/')
 @main.route('album/<id>/')

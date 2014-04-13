@@ -93,6 +93,17 @@ class Post(Base):
 		else:
 			return False
 
+class Comment(Base):
+	__tablename__ = 'comments'
+	user_name = db.Column(db.String(255),  nullable=False)
+	message = db.Column(db.Text(),  nullable=False)
+	post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+	post = relationship("Post", order_by="Post.id", backref="comment")
+	def __init__(self, user_name, message, post_id):
+		self.user_name      = user_name
+		self.message    	= message
+		self.post_id    	= post_id
+			
 @event.listens_for(Post, 'before_update')
 def receive_before_update(mapper, connection, target):
 	target.summary		= target.getSummary()

@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 <div class="login-wrap">
-	<form name="login-form" method="post" action="/admin/login/" class="form-signin">
+	<form name="login-form" method="post" action="{{ url_for('admin.adminLogin') }}" class="form-signin">
 		<h2 class="form-signin-heading">请登录</h2>
 		{{ form.user_name(class='form-control', placeholder='用户名') }}
 		{{ form.user_pass(class='form-control', placeholder='密码') }}

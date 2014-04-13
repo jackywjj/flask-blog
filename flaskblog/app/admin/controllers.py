@@ -12,13 +12,13 @@ from app.models.models import *
 from app.models.forms import *
 from app.helpers.helpers import *
 
-admin = Blueprint('admin', __name__, url_prefix='/admin')
+admin = Blueprint('admin', __name__, url_prefix='/admin120')
 
 # globale variables
 data = {}
 @admin.before_request
 def before_request():
-	if 'admin/login' in request.url_rule.rule:
+	if 'login' in request.url_rule.rule:
 		pass
 	else:
 		if 'user_id' in session:
@@ -39,6 +39,22 @@ def adminLogin():
 def adminLogout():
 	session.pop('user_id', None)
 	return redirect(url_for('admin.adminLogin'))
+	
+'''
+Comment controllers
+'''
+@admin.route('/comment/')
+@admin.route('/comment/index/')
+def commentIndex():
+	comments = Comment.query.order_by("-id").all()
+	return render_template("admin/comment/index.html", data=data, comments=comments)
+	
+@admin.route('/comment/<id>/delete/')
+def commentDelete(id):
+	comment = Comment.query.get(id)
+	db.session.delete(comment)
+	db.session.commit()
+	return redirect(url_for('admin.commentIndex'))
 '''
 Category controllers
 '''

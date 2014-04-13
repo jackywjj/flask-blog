@@ -1,21 +1,34 @@
-# Debug or not
+# Debug enviroment
 DEBUG = False
+# Define the application directory
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))  
-SQLALCHEMY_DATABASE_URI = 'mysql://username:password@host/dbname'
+# Define the database
+SQLALCHEMY_DATABASE_URI = 'mysql://root:jacky@mysql9981@127.0.0.1/flaskblogdb'
+#SQLALCHEMY_DATABASE_URI = 'mysql://root:admin123456@127.0.0.1/flaskblogdb'
 DATABASE_CONNECT_OPTIONS = {}
 
+# Application threads. A common general assumption is
+# using 2 per available processor cores - to handle
+# incoming requests using one and performing background
+# operations using the other.
 THREADS_PER_PAGE = 2
-# Enable CSRF
+
+# Enable protection agains *Cross-site Request Forgery (CSRF)*
 CSRF_ENABLED     = True
-# secure key
-CSRF_SESSION_KEY = "abcdefg"
+
+# Use a secure, unique and absolutely secret key for
+# signing the data. 
+CSRF_SESSION_KEY = "abcmnb"
+
 # Secret key for signing cookies
-SECRET_KEY = "abcdefg123456"
-# page size
+SECRET_KEY = "abcmnbabcmnb"
+
 POSTS_PER_PAGE = 12
-# upload dir and url
-UPLOAD_PATH_BLOG = BASE_DIR + "/app/static/uploads/b/"
-UPLOAD_PATH_ALBUM = BASE_DIR + "/app/static/uploads/a/"
+
+#UPLOAD_PATH_BLOG = BASE_DIR + "\\app\\static\\uploads\\b\\"
+#UPLOAD_PATH_ALBUM = BASE_DIR + "\\app\\static\\uploads\\a\\"
+UPLOAD_PATH_BLOG = "/workdisk/www/flaskblog/app/static/uploads/b/"
+UPLOAD_PATH_ALBUM = "/workdisk/www/flaskblog/app/static/uploads/a/"
 UPLOAD_URL_BLOG = "/static/uploads/b/"
 UPLOAD_URL_ALBUM = "/static/uploads/a/"
