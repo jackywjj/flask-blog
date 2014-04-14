@@ -26,11 +26,9 @@
 		  <td>{{ category.title}}</td>
 		  <td>{{ category.created_at}}</td>
 		  <td>
-		  	{% if category.status == 0 %}
-		  		<a href="{{ url_for('admin.categoryStatus', id=category.id)}}">Disable</a>
-		  	{% elif category.status == 1 %}
-		  		<a href="{{ url_for('admin.categoryStatus', id=category.id)}}">Enable</a>
-		  	{% endif %}
+			<a href="{{ url_for('admin.categoryStatus', id=category.id) }}">
+				{% if category.status == 0 %} Disable {% elif category.status == 1 %} Enable {% endif %}
+			</a>
 		  </td>
 		  <td><a href="{{ url_for('admin.categoryUpdate', id=category.id)}}">Modify</a></td>
 		  <td><a href="{{ url_for('admin.categoryDelete', id=category.id)}}" class="delete">Delete</a></td>

@@ -6,7 +6,7 @@
 {% block content %}
 <h1>照片 <small>列表</small></h1>
 <div class="clearfix">
-	<a href="/admin/photo/create/{% if data['album_id'] %}?album_id={{ data['album_id'] }}{% endif %}" class="btn btn-primary pull-right">新建照片</a>
+	<a href="{{ url_for('admin.photoCreate') }}{% if data['album_id'] %}?album_id={{ data['album_id'] }}{% endif %}" class="btn btn-primary pull-right">新建照片</a>
 </div>
 <div class="table-responsive">
 	<div class="row form-group">
@@ -50,9 +50,10 @@
 			{% elif photo.status == 1 %}
 				<a href="">Enable</a>
 			{% endif %}
+			
 			</td>
-			<td><a href="/admin/photo/{{ photo.id }}/edit/?page={{ page }}&album_id={{ album_id }}">Modify</a></td>
-            <td><a href="/admin/photo/{{ photo.id }}/delete/?page={{ page }}&album_id={{ album_id }}" class="delete">Delete</a></td>
+			<td><a href="{{ url_for('admin.photoUpdate', id=photo.id) }}?page={{ page }}&album_id={{ album_id }}">Modify</a></td>
+            <td><a href="{{ url_for('admin.photoDelete', id=photo.id) }}?page={{ page }}&album_id={{ album_id }}" class="delete">Delete</a></td>
 		</tr>
 			{% endfor %}
 		{% endif %}

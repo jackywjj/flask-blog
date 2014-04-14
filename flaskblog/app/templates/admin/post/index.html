@@ -6,7 +6,7 @@
 {% block content %}
 <h1>博客文章 <small>列表</small></h1>
 <div class="clearfix">
-    <a href="/admin/post/create/{% if data['category_id'] %}?category_id={{ data['category_id'] }}{% endif %}" class="btn btn-primary pull-right">新建文章</a>
+    <a href="{{ url_for('admin.postCreate') }}{% if data['category_id'] %}?category_id={{ data['category_id'] }}{% endif %}" class="btn btn-primary pull-right">新建文章</a>
 </div>
 <div class="table-responsive">
 	<div class="row form-group">
@@ -39,14 +39,12 @@
             <td>{{ post.created_at}}</td>
 			<td>{{ post.updated_at}}</td>
             <td>
-            {% if post.status == 0 %}
-                <a href="/admin/post/{{ post.id }}/status/?page={{ page }}&category_id={{ category_id }}">Disable</a>
-            {% elif post.status == 1 %}
-                <a href="/admin/post/{{ post.id }}/status/?page={{ page }}&category_id={{ category_id }}">Enable</a>
-            {% endif %}
+			<a href="{{ url_for('admin.postStatus', id=post.id) }}?page={{ page }}&category_id={{ category_id }}">
+				{% if post.status == 0 %} Disable {% elif post.status == 1 %} Enable {% endif %}
+			</a>
             </td>
-            <td><a href="/admin/post/{{ post.id }}/edit/?page={{ page }}&category_id={{ category_id }}">Modify</a></td>
-            <td><a href="/admin/post/{{ post.id }}/delete/?page={{ page }}&category_id={{ category_id }}" class="delete">Delete</a></td>
+            <td><a href="{{ url_for('admin.postUpdate', id=post.id) }}?page={{ page }}&category_id={{ category_id }}">Modify</a></td>
+            <td><a href="{{ url_for('admin.postDelete', id=post.id) }}?page={{ page }}&category_id={{ category_id }}" class="delete">Delete</a></td>
         </tr>
         {% endfor %}
         </tbody>

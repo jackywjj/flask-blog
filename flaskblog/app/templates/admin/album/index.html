@@ -5,7 +5,7 @@
 {% block content %}
 <h1>相册 <small>列表</small></h1>
 <div class="clearfix">
-	<a href="/admin/album/create/" class="btn btn-primary pull-right">新建相册</a>
+	<a href="{{ url_for('admin.albumCreate') }}" class="btn btn-primary pull-right">新建相册</a>
 </div>
 <div class="table-responsive">
 	<table class="table table-striped table-hover">
@@ -26,14 +26,12 @@
 			<td>{{ album.title}}</td>
 			<td>{{ album.created_at}}</td>
 			<td>
-			{% if album.status == 0 %}
-				<a href="/admin/album/{{ album.id }}/status/">Disable</a>
-			{% elif album.status == 1 %}
-				<a href="/admin/album/{{ album.id }}/status/">Enable</a>
-			{% endif %}
+				<a href="{{ url_for('admin.albumStatus', id=album.id) }}">
+					{% if album.status == 0 %} Disable {% elif album.status == 1 %} Enable {% endif %}
+				</a>
 			</td>
-			<td><a href="/admin/album/{{ album.id }}/edit/">Modify</a></td>
-			<td><a href="/admin/album/{{ album.id }}/delete/" class="delete">Delete</a></td>
+			<td><a href="{{ url_for('admin.albumUpdate', id=album.id) }}">Modify</a></td>
+			<td><a href="{{ url_for('admin.albumDelete', id=album.id) }}" class="delete">Delete</a></td>
 		</tr>
 		{% endfor %}
 	{% endif %}
