@@ -5,7 +5,7 @@
 {% block content %}
 <h1>分类 <small>列表</small></h1>
 <div class="clearfix">
-	<a href="/admin/category/create/" class="btn btn-primary pull-right">新建分类</a>
+	<a href="{{ url_for('admin.categoryCreate') }}" class="btn btn-primary pull-right">新建分类</a>
 </div>
 <div class="table-responsive">
 	<table class="table table-hover table-striped">
@@ -27,13 +27,13 @@
 		  <td>{{ category.created_at}}</td>
 		  <td>
 		  	{% if category.status == 0 %}
-		  		<a href="/admin/category/{{ category.id }}/status/">Disable</a>
+		  		<a href="{{ url_for('admin.categoryStatus', id=category.id)}}">Disable</a>
 		  	{% elif category.status == 1 %}
-		  		<a href="/admin/category/{{ category.id }}/status/">Enable</a>
+		  		<a href="{{ url_for('admin.categoryStatus', id=category.id)}}">Enable</a>
 		  	{% endif %}
 		  </td>
-		  <td><a href="/admin/category/{{ category.id }}/edit/">Modify</a></td>
-		  <td><a href="/admin/category/{{ category.id }}/delete/" class="delete">Delete</a></td>
+		  <td><a href="{{ url_for('admin.categoryUpdate', id=category.id)}}">Modify</a></td>
+		  <td><a href="{{ url_for('admin.categoryDelete', id=category.id)}}" class="delete">Delete</a></td>
 		</tr>
 			{% endfor %}
 		{% endif %}
