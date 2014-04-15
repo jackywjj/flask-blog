@@ -92,6 +92,8 @@ class Post(Base):
 			return dir + self.post_image
 		else:
 			return False
+	def renderCommentCount(self):
+		return Comment.query.filter_by(post_id=self.id).count()
 
 class Comment(Base):
 	__tablename__ = 'comments'

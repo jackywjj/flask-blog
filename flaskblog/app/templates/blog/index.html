@@ -10,7 +10,10 @@
 		<div class="post-block">
 			<article class="post substrate">
 				<h3><a target="_blank" href="/blog/{{ post.id }}/">{{ post.title }}</a></h3>
-				<div class="post-meta last-meta">发表于 ：{{ post.created_at }}</div>
+				<div class="post-meta last-meta">
+					发表于 ：{{ post.created_at }} <br />
+					评论数 ：2
+				</div>
 				<div class="post-desc-wrap clearfix">
 					{% if post.post_image %}
 					<div class="post-desc-left">
@@ -20,7 +23,11 @@
 					{% else %}
 					{% filter markdown %}{{ post.summary|safe }}{% endfilter %}
 					{% endif %}
-					<div class="clearfix"><a target="_blank" href="/blog/{{ post.id }}/" class="pull-right">阅读更多...</a></div>
+					<br />
+					<div class="clearfix">
+						<a target="_blank" href="/blog/{{ post.id }}/#comment" class="pull-left">评论数 ：{{ post.renderCommentCount() }}</a>
+						<a target="_blank" href="/blog/{{ post.id }}/" class="pull-right">阅读更多...</a>
+					</div>
 				</div>
 			</article>
 		</div>
