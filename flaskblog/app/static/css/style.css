@@ -200,6 +200,7 @@ li {
 .post-desc-right {
 	float: left;
 	width: 55%;
+	min-height: 190px;
 }
 .post-content{
 	padding-top: 20px;

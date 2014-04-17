@@ -2,6 +2,8 @@
 # Import flask dependencies
 from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask import Markup
+from flask import request
+from werkzeug.contrib.atom import AtomFeed
 
 from app import db
 from app.models.models import *
@@ -52,3 +54,23 @@ def albumIndex(id=1):
 @main.route('aboutme/')
 def aboutmeIndex():
 	return render_template("aboutme/index.html")
+
+@main.route('rss/')
+def rssIndex():
+	feed = AtomFeed(u'树妖攻城狮的IT实验室', feed_url=request.url, url=request.url_root)
+	posts = Post.query.order_by("-id").limit(15).all()
+	for post in posts:
+		feed.add(post.title, unicode(post.content),
+				content_type='html',
+				author='Jacky',
+				url=url_for('main.detail', id=post.id),
+				updated=post.updated_at,
+				published=post.created_at)
+	return feed.get_response()
+	
+	
+	
+	
+	
+	
+	
