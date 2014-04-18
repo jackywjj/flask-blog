@@ -1,5 +1,5 @@
 html,body {
-	background: url("/images/background.jpg") repeat scroll 0 0 #DCDFE2;
+	background: url("/static/imgs/background.jpg") repeat scroll 0 0 #DCDFE2;
 	overflow-y: scroll;
 }
 a {
