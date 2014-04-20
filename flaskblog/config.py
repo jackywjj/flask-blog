@@ -4,8 +4,7 @@ DEBUG = False
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))  
 # Define the database
-SQLALCHEMY_DATABASE_URI = 'mysql://root:jacky@mysql9981@127.0.0.1/flaskblogdb'
-#SQLALCHEMY_DATABASE_URI = 'mysql://root:admin123456@127.0.0.1/flaskblogdb'
+SQLALCHEMY_DATABASE_URI = 'mysql://name:password@127.0.0.1/dbname'
 DATABASE_CONNECT_OPTIONS = {}
 
 # Application threads. A common general assumption is
