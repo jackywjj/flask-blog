@@ -1,0 +1,7 @@
+flask
+flask-markdown
+flask-sqlalchemy
+PIL
+flask-wtf
+MySQL-python
+flask-paginate
