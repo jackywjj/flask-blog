@@ -41,7 +41,7 @@
 				<ul>
 					{% if categories %}
 						{% for category in categories%}
-					<li><a title="{{ category.title }}" href="/blog/category/{{ category.id }}">{{ category.title }}</a></li>
+					<li><a title="{{ category.title }}" href="/blog/category/{{ category.id }}">{{ category.title }} ({{ category.renderCount() }})</a></li>
 						{% endfor %}
 					{% endif %}
 				</ul>

@@ -63,6 +63,8 @@ class Category(Base):
 	def __init__(self, title):
 		self.title      = title
 		self.status     = 0
+	def renderCount(self):
+		return Post.query.filter_by(category_id=self.id, status='1').count()
 
 
 class Post(Base):
