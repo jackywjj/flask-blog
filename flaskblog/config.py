@@ -4,8 +4,7 @@ DEBUG = False
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))  
 # Define the database
-SQLALCHEMY_DATABASE_URI = 'mysql://root:jacky@mysql9981@127.0.0.1/flaskblogdb'
-#SQLALCHEMY_DATABASE_URI = 'mysql://root:admin123456@127.0.0.1/flaskblogdb'
+SQLALCHEMY_DATABASE_URI = 'mysql://username:password@127.0.0.1/dbname'
 DATABASE_CONNECT_OPTIONS = {}
 
 # Application threads. A common general assumption is
@@ -19,10 +18,10 @@ CSRF_ENABLED     = True
 
 # Use a secure, unique and absolutely secret key for
 # signing the data. 
-CSRF_SESSION_KEY = "abcmnb"
+CSRF_SESSION_KEY = "mkoiujnbhyt"
 
 # Secret key for signing cookies
-SECRET_KEY = "abcmnbabcmnb"
+SECRET_KEY = "0912ikxmjs7283746"
 
 POSTS_PER_PAGE = 12
 
