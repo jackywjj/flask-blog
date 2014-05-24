@@ -46,8 +46,10 @@ def detail(id):
 
 @main.route('album/')
 @main.route('album/<id>/')
-def albumIndex(id=1):
+def albumIndex(id=0):
 	albums = Album.query.order_by("-id").all()
+	if id == 0:
+		id = albums[0].id
 	photos = Photo.query.filter_by(album_id=id).order_by("-id")
 	return render_template("album/index.html", albums=albums, photos=photos)
 	
