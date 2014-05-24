@@ -4,6 +4,8 @@ from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask import Markup
 from flask import request
 from werkzeug.contrib.atom import AtomFeed
+from config import POSTS_PER_PAGE
+from flask.ext.paginate import Pagination
 
 from app import db
 from app.models.models import *
@@ -11,11 +13,17 @@ from app.models.forms import CommentForm
 main = Blueprint('main', __name__, url_prefix='/')
 
 @main.route('')
-def index():
+@main.route('home/')
+@main.route('home/<int:page>/')
+def index(page = 1):
 	categories = Category.query.filter_by(status='1').order_by('title').all()
-	posts = Post.query.filter_by(status='1').order_by("-id").all()
+	try:
+		posts = Post.query.filter_by(status='1').order_by("-id").paginate(page=page, per_page=POSTS_PER_PAGE)
+	except:
+		return redirect(url_for('main.index', page=1))
+
 	dates = db.session.query(Post, "created_month").group_by("created_month").all()
-	return render_template("blog/index.html", categories=categories, posts=posts, dates=dates)
+	return render_template("blog/index.html", categories=categories, posts=posts, dates=dates, page=page)
 
 @main.route('blog/category/<id>/')
 def category(id):

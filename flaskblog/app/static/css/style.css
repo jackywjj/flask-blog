@@ -8,6 +8,9 @@ a {
 a:hover {
 	text-decoration: none;
 }
+.pagination .active a {
+	cursor: pointer!important;
+}
 ol, ul {
 	list-style: none outside none;
 }
