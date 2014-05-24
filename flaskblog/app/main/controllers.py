@@ -13,9 +13,8 @@ from app.models.forms import CommentForm
 main = Blueprint('main', __name__, url_prefix='/')
 
 @main.route('')
-@main.route('home/')
-@main.route('home/<int:page>/')
-def index(page = 1):
+def index():
+	page = int(request.args.get('page')) if request.args.get('page') else 1
 	categories = Category.query.filter_by(status='1').order_by('title').all()
 	try:
 		posts = Post.query.filter_by(status='1').order_by("-id").paginate(page=page, per_page=POSTS_PER_PAGE)
@@ -27,17 +26,25 @@ def index(page = 1):
 
 @main.route('blog/category/<id>/')
 def category(id):
+	page = int(request.args.get('page')) if request.args.get('page') else 1
 	categories = Category.query.filter_by(status='1').order_by('title').all()
-	posts = Post.query.filter_by(status='1').order_by("-id").filter_by(category_id=id).all()
+	try:
+		posts = Post.query.filter_by(status='1').order_by("-id").filter_by(category_id=id).paginate(page=page, per_page=POSTS_PER_PAGE)
+	except:
+		return redirect(url_for('main.index', page=1))
 	dates = db.session.query(Post, "created_month").group_by("created_month").all()
-	return render_template("blog/index.html", categories=categories, posts=posts, dates=dates)
+	return render_template("blog/index.html", categories=categories, posts=posts, dates=dates, page=page)
 	
 @main.route('blog/archive/<month>/')
 def archive(month):
+	page = int(request.args.get('page')) if request.args.get('page') else 1
 	categories = Category.query.filter_by(status='1').order_by('title').all()
-	posts = Post.query.filter_by(status='1').order_by("-id").filter_by(created_month=month).all()
+	try:
+		posts = Post.query.filter_by(status='1').order_by("-id").filter_by(created_month=month).paginate(page=page, per_page=POSTS_PER_PAGE)
+	except:
+		return redirect(url_for('main.index', page=1))
 	dates = db.session.query(Post, "created_month").group_by("created_month").all()
-	return render_template("blog/index.html", categories=categories, posts=posts, dates=dates)
+	return render_template("blog/index.html", categories=categories, posts=posts, dates=dates, page=page)
 	
 @main.route('blog/<id>/', methods=['GET', 'POST'])
 def detail(id):
