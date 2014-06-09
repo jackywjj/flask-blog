@@ -77,6 +77,8 @@ class Post(Base):
 	category = relationship("Category", order_by="Category.id", backref="post")
 	post_image = db.Column(db.String(255))
 	created_month = db.Column(db.String(7), default='')
+	view_count = db.Column(db.Integer, default=0)
+	
 	def __init__(self, title, category_id, content):
 		self.title          = title
 		self.category_id    = category_id
@@ -85,6 +87,7 @@ class Post(Base):
 		self.status         = 0
 		self.created_month  = time.strftime('%Y-%m',time.localtime(time.time()))
 		self.post_image		= ''
+		view_count			= 0
 	def getSummary(self):
 		tmpSumm = self.content.split("<!--more-->")
 		return tmpSumm[0]
@@ -107,7 +110,15 @@ class Comment(Base):
 		self.user_name      = user_name
 		self.message    	= message
 		self.post_id    	= post_id
-			
+
+class Viewlog(Base):
+	__tablename__ = 'viewlog'
+	ip_addr = db.Column(db.String(20),  nullable=False)
+	post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+	def __init__(self, ip_addr, post_id):
+		self.ip_addr = ip_addr
+		self.post_id = post_id
+		
 @event.listens_for(Post, 'before_update')
 def receive_before_update(mapper, connection, target):
 	target.summary		= target.getSummary()

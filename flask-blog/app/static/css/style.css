@@ -1,5 +1,5 @@
 html,body {
-	background: url("/images/background.jpg") repeat scroll 0 0 #DCDFE2;
+	background: url("/static/imgs/background.jpg") repeat scroll 0 0 #DCDFE2;
 	overflow-y: scroll;
 }
 a {
@@ -19,12 +19,15 @@ li {
 	margin: 0px;
 }
 #content-wrap {
-	background: url("/images/bg.jpg") repeat scroll 0 0 #F8F8F8;
+	background-color: #F8F8F8;
 	border-radius: 20px 20px 20px 20px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 	margin: 50px auto 50px;
 	position: relative;
 	z-index: 0;
+}
+.hrefspace {
+	padding-right:20px;
 }
 /*Page header*/
 .page-crumbmenu {

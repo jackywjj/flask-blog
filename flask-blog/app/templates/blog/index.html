@@ -25,7 +25,8 @@
 					{% endif %}
 					<br />
 					<div class="clearfix">
-						<a target="_blank" href="/blog/{{ post.id }}/#comment" class="pull-left">评论数 ：{{ post.renderCommentCount() }}</a>
+						<a target="_blank" href="/blog/{{ post.id }}/#comment" class="pull-left hrefspace">评论数 ：{{ post.renderCommentCount() }}</a>
+						<span class="pull-left">阅读数 ：{{ post.view_count }}</span>
 						<a target="_blank" href="/blog/{{ post.id }}/" class="pull-right">阅读更多...</a>
 					</div>
 				</div>

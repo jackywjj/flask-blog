@@ -57,6 +57,15 @@ def detail(id):
 		return redirect(url_for('main.detail', id=id))
 	post = Post.query.get(id)
 	comments = Comment.query.filter_by(post_id=id).order_by("-id").all()
+	#update view count
+	post.view_count = post.view_count + 1
+	db.session.commit()
+	
+	ip = request.remote_addr
+	viewlogModel = Viewlog(ip, id)
+	db.session.add(viewlogModel)
+	db.session.commit()
+	
 	return render_template("blog/detail.html", post=post, form=form, comments=comments)
 
 @main.route('album/')

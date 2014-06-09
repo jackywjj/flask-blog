@@ -6,4 +6,4 @@ if __name__ == '__main__':
 	Markdown(app)
 	app.wsgi_app = ProxyFix(app.wsgi_app)
 	app.debug = True
-	app.run()
+	app.run(host='0.0.0.0')
