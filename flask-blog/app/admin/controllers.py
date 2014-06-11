@@ -324,4 +324,22 @@ def userDelete(id):
 	db.session.commit()
 	return redirect(url_for('admin.userIndex'))
 
+'''
+View log controller
+'''
+@admin.route('/viewlog/')
+@admin.route('/viewlog/index/')
+@admin.route('/viewlog/<int:page>/')
+@admin.route('/viewlog/index/<int:page>/')
+def viewlogIndex(page=1):
+	try:
+		models = Viewlog.query.order_by("-id").paginate(page=page, per_page=POSTS_PER_PAGE)
+	except:
+		return redirect(url_for('admin.viewlogIndex'))
+	return render_template("admin/viewlog/index.html", models=models)
+
+
+
+
+
 

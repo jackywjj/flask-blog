@@ -12,3 +12,6 @@ This version is already lunched on my blog. So please do not do anything evil. M
 	/usr/local/bin/gunicorn -D -p _/path/to/pid/flaskblog.pid_ -u _user_ -g _group_ --access-logfile _/path/to/log/flaskblog-access.log_ --error-logfile _/path/to/log/flaskblog-error.log_ -w 2 run:app
 -修复若干Bug，主要是view部分
 -增加文章阅读次数功能
+
+### 2014-06-11 修改
+-增加后台博客文章记录查看功能，列出时间，ip等信息

@@ -115,6 +115,7 @@ class Viewlog(Base):
 	__tablename__ = 'viewlog'
 	ip_addr = db.Column(db.String(20),  nullable=False)
 	post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+	post = relationship("Post", order_by="Post.id", backref="viewlog")
 	def __init__(self, ip_addr, post_id):
 		self.ip_addr = ip_addr
 		self.post_id = post_id

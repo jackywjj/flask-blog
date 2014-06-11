@@ -32,6 +32,9 @@
 				<li {% if '/post' in request.url_rule.rule %} class="active" {% endif %}>
 					<a href="{{ url_for('admin.postIndex') }}"><i class="fa fa-font"></i> 博客文章</a>
 				</li>
+				<li {% if '/viewlog' in request.url_rule.rule %} class="active" {% endif %}>
+					<a href="{{ url_for('admin.viewlogIndex') }}"><i class="fa fa-font"></i> 文章阅读记录</a>
+				</li>
 				<li {% if '/album' in request.url_rule.rule %} class="active" {% endif %}>
 					<a href="{{ url_for('admin.albumIndex') }}"><i class="fa fa-list"></i> 相册</a>
 				</li>
