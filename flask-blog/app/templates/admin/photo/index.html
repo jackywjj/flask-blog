@@ -52,8 +52,8 @@
 			{% endif %}
 			
 			</td>
-			<td><a href="{{ url_for('admin.photoUpdate', id=photo.id) }}?page={{ page }}&album_id={{ album_id }}">Modify</a></td>
-            <td><a href="{{ url_for('admin.photoDelete', id=photo.id) }}?page={{ page }}&album_id={{ album_id }}" class="delete">Delete</a></td>
+			<td><a href="{{ url_for('admin.photoUpdate', id=photo.id) }}?page={{ page }}&amp;album_id={{ album_id }}">Modify</a></td>
+            <td><a href="{{ url_for('admin.photoDelete', id=photo.id) }}?page={{ page }}&amp;album_id={{ album_id }}" class="delete">Delete</a></td>
 		</tr>
 			{% endfor %}
 		{% endif %}

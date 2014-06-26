@@ -48,21 +48,28 @@ def archive(month):
 	
 @main.route('blog/<id>/', methods=['GET', 'POST'])
 def detail(id):
+	try:
+		id = int(id)
+		post = Post.query.get(id)
+	except ValueError:
+		print "nonononono"
+		post = Post.query.filter_by(perma_link=id).one()
+	
 	form = CommentForm(request.form)
 	if request.method == "POST" and form.validate():
-		comment = Comment(form.user_name.data, form.message.data, id)
+		comment = Comment(form.user_name.data, form.message.data, post.id)
 		db.session.add(comment)
 		db.session.commit()
 		flash(u'感谢您的留言！')
 		return redirect(url_for('main.detail', id=id))
-	post = Post.query.get(id)
-	comments = Comment.query.filter_by(post_id=id).order_by("-id").all()
+
+	comments = Comment.query.filter_by(post_id=post.id).order_by("-id").all()
 	#update view count
 	post.view_count = post.view_count + 1
 	db.session.commit()
 	
 	ip = request.remote_addr
-	viewlogModel = Viewlog(ip, id)
+	viewlogModel = Viewlog(ip, post.id)
 	db.session.add(viewlogModel)
 	db.session.commit()
 	

@@ -1,4 +1,6 @@
 import time
+import re
+
 from app import db
 from sqlalchemy.orm import relationship
 from sqlalchemy import event
@@ -78,6 +80,7 @@ class Post(Base):
 	post_image = db.Column(db.String(255))
 	created_month = db.Column(db.String(7), default='')
 	view_count = db.Column(db.Integer, default=0)
+	perma_link = db.Column(db.String(200))
 	
 	def __init__(self, title, category_id, content):
 		self.title          = title
@@ -88,9 +91,14 @@ class Post(Base):
 		self.created_month  = time.strftime('%Y-%m',time.localtime(time.time()))
 		self.post_image		= ''
 		view_count			= 0
+		self.perma_link		= self.getPermalink()
 	def getSummary(self):
 		tmpSumm = self.content.split("<!--more-->")
 		return tmpSumm[0]
+
+	def getPermalink(self):
+		return re.sub(r'\s+', '-', stringQ2B(self.title)).lower()
+
 	def renderImage(self):
 		dir = renderPostImageUrl(self.id)
 		if self.post_image != "":
@@ -123,6 +131,7 @@ class Viewlog(Base):
 @event.listens_for(Post, 'before_update')
 def receive_before_update(mapper, connection, target):
 	target.summary		= target.getSummary()
+	target.perma_link		= target.getPermalink()
 
 
 

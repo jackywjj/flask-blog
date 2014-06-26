@@ -31,6 +31,19 @@ def resizePostImage(file, id):
 	im.thumbnail((320, 240), Image.ANTIALIAS)
 	im.save(new_filepath + new_filename)
 	return new_filename
+def strQ2B(uchar):
+	inside_code=ord(uchar)
+	if inside_code==0x3000:
+		inside_code=0x0020
+	else:
+		inside_code-=0xfee0
+	if inside_code<0x0020 or inside_code>0x7e:
+		return uchar
+	return unichr(inside_code)
+def stringQ2B(ustring):
+	"""把字符串全角转半角"""
+	return "".join([strQ2B(uchar) for uchar in ustring])
+
 
 ########################################################################################################################	
 def renderPhotoImageDir(id):

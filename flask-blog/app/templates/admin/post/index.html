@@ -24,6 +24,7 @@
             <th>ID</th>
             <th>类别</th>
             <th>标题</th>
+            <th>Perma Link</th>
             <th>新建于</th>
 			<th>更新于</th>
             <th>状态</th>
@@ -36,15 +37,16 @@
             <td>{{ post.id}}</td>
             <td>{{ post.category.title}}</td>
             <td>{{ post.title}}</td>
+            <td>{{ post.perma_link}}</td>
             <td>{{ post.created_at}}</td>
 			<td>{{ post.updated_at}}</td>
             <td>
-			<a href="{{ url_for('admin.postStatus', id=post.id) }}?page={{ page }}&category_id={{ category_id }}">
+			<a href="{{ url_for('admin.postStatus', id=post.id) }}?page={{ page }}&amp;category_id={{ category_id }}">
 				{% if post.status == 0 %} Disable {% elif post.status == 1 %} Enable {% endif %}
 			</a>
             </td>
-            <td><a href="{{ url_for('admin.postUpdate', id=post.id) }}?page={{ page }}&category_id={{ category_id }}">Modify</a></td>
-            <td><a href="{{ url_for('admin.postDelete', id=post.id) }}?page={{ page }}&category_id={{ category_id }}" class="delete">Delete</a></td>
+            <td><a href="{{ url_for('admin.postUpdate', id=post.id) }}?page={{ page }}&amp;category_id={{ category_id }}">Modify</a></td>
+            <td><a href="{{ url_for('admin.postDelete', id=post.id) }}?page={{ page }}&amp;category_id={{ category_id }}" class="delete">Delete</a></td>
         </tr>
         {% endfor %}
         </tbody>
