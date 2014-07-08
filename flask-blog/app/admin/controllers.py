@@ -142,6 +142,7 @@ def postCreate():
 
 @admin.route('/post/<id>/edit/', methods=['GET', 'POST'])
 def postUpdate(id):
+	category_id = request.args.get('category_id') if request.args.get('category_id') else 1
 	post = Post.query.get(id)
 	form = PostForm(request.form, post)
 	if request.method == "POST" and form.validate():
@@ -154,6 +155,7 @@ def postUpdate(id):
 			post.post_image = filename
 		db.session.commit()
 		return redirect(url_for('admin.postIndex', category_id=post.category_id))
+	data['category_id'] = int(category_id)
 	return render_template("admin/post/update.html", data=data, form=form, post=post)
 
 @admin.route('/post/<id>/delete/')

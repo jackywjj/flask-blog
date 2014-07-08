@@ -21,3 +21,7 @@ This version is already lunched on my blog. So please do not do anything evil. M
 -perma link 转换规则为 半角，小写，空格使用 - 代替
 -修复了页面上 & 符号改成 &amp; 
 -调整了菜单
+
+### 2014-07-01 Update
+-修补后台返回键bug
+-后台文章列表显示阅读次数
