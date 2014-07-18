@@ -23,10 +23,8 @@ CSRF_SESSION_KEY = "mkoiujnbhyt"
 # Secret key for signing cookies
 SECRET_KEY = "0912ikxmjs7283746"
 
-POSTS_PER_PAGE = 12
+POSTS_PER_PAGE = 20
 
-#UPLOAD_PATH_BLOG = BASE_DIR + "\\app\\static\\uploads\\b\\"
-#UPLOAD_PATH_ALBUM = BASE_DIR + "\\app\\static\\uploads\\a\\"
 UPLOAD_PATH_BLOG = "/workdisk/www/flaskblog/app/static/uploads/b/"
 UPLOAD_PATH_ALBUM = "/workdisk/www/flaskblog/app/static/uploads/a/"
 UPLOAD_URL_BLOG = "/static/uploads/b/"

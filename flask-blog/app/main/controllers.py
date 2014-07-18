@@ -6,7 +6,8 @@ from flask import request
 from werkzeug.contrib.atom import AtomFeed
 from config import POSTS_PER_PAGE
 from flask.ext.paginate import Pagination
-
+from flaskext.markdown import Markdown
+import markdown
 from app import db
 from app.models.models import *
 from app.models.forms import CommentForm
@@ -93,7 +94,7 @@ def rssIndex():
 	feed = AtomFeed(u'树妖攻城狮的IT实验室', feed_url=request.url, url=request.url_root)
 	posts = Post.query.order_by("-id").limit(15).all()
 	for post in posts:
-		feed.add(post.title, unicode(post.content),
+		feed.add(post.title, Markup(markdown.markdown(post.content)),
 				content_type='html',
 				author='Jacky',
 				url=url_for('main.detail', id=post.id),

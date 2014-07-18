@@ -1,0 +1,275 @@
+2014-07-15 09:38:19 [4637] [INFO] Starting gunicorn 18.0
+2014-07-15 09:38:19 [4637] [INFO] Listening at: http://127.0.0.1:8000 (4637)
+2014-07-15 09:38:19 [4637] [INFO] Using worker: sync
+2014-07-15 09:38:19 [4642] [INFO] Booting worker with pid: 4642
+2014-07-15 09:38:19 [4643] [INFO] Booting worker with pid: 4643
+2014-07-15 09:38:20 [4642] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 106, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/base.py", line 114, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 62, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/util.py", line 354, in import_app
+    __import__(module)
+  File "/workdisk/www/flaskblog/run.py", line 1, in <module>
+    from app import app
+  File "/workdisk/www/flaskblog/app/__init__.py", line 20, in <module>
+    from app.main.controllers import main as main_module
+  File "/workdisk/www/flaskblog/app/main/controllers.py", line 13, in <module>
+    from app.models.forms import CommentForm
+  File "/workdisk/www/flaskblog/app/models/forms.py", line 36, in <module>
+    class PostForm(Form):
+  File "/workdisk/www/flaskblog/app/models/forms.py", line 39, in PostForm
+    category_id = SelectField(u'文章分类', choices=[(c.id, c.title) for c in Category.query.order_by('id').all()], coerce=int)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2292, in all
+    return list(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2404, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2417, in _execute_and_instances
+    close_with_result=True)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2408, in _connection_from_session
+    **kw)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1729, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 332, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 626, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 433, in checkout
+    rec = pool._do_get()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 945, in _do_get
+    return self._create_connection()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 278, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 404, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 527, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 376, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 106, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/base.py", line 114, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 62, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/util.py", line 354, in import_app
+    __import__(module)
+  File "/workdisk/www/flaskblog/run.py", line 1, in <module>
+    from app import app
+  File "/workdisk/www/flaskblog/app/__init__.py", line 20, in <module>
+    from app.main.controllers import main as main_module
+  File "/workdisk/www/flaskblog/app/main/controllers.py", line 13, in <module>
+    from app.models.forms import CommentForm
+  File "/workdisk/www/flaskblog/app/models/forms.py", line 36, in <module>
+    class PostForm(Form):
+  File "/workdisk/www/flaskblog/app/models/forms.py", line 39, in PostForm
+    category_id = SelectField(u'文章分类', choices=[(c.id, c.title) for c in Category.query.order_by('id').all()], coerce=int)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2292, in all
+    return list(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2404, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2417, in _execute_and_instances
+    close_with_result=True)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2408, in _connection_from_session
+    **kw)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1729, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 332, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 626, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 433, in checkout
+    rec = pool._do_get()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 945, in _do_get
+    return self._create_connection()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 278, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 404, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 527, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 376, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") None None
+2014-07-15 09:38:20 [4642] [INFO] Worker exiting (pid: 4642)
+2014-07-15 09:38:20 [4643] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 106, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/base.py", line 114, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 62, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/util.py", line 354, in import_app
+    __import__(module)
+  File "/workdisk/www/flaskblog/run.py", line 1, in <module>
+    from app import app
+  File "/workdisk/www/flaskblog/app/__init__.py", line 20, in <module>
+    from app.main.controllers import main as main_module
+  File "/workdisk/www/flaskblog/app/main/controllers.py", line 13, in <module>
+    from app.models.forms import CommentForm
+  File "/workdisk/www/flaskblog/app/models/forms.py", line 36, in <module>
+    class PostForm(Form):
+  File "/workdisk/www/flaskblog/app/models/forms.py", line 39, in PostForm
+    category_id = SelectField(u'文章分类', choices=[(c.id, c.title) for c in Category.query.order_by('id').all()], coerce=int)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2292, in all
+    return list(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2404, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2417, in _execute_and_instances
+    close_with_result=True)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2408, in _connection_from_session
+    **kw)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1729, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 332, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 626, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 433, in checkout
+    rec = pool._do_get()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 945, in _do_get
+    return self._create_connection()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 278, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 404, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 527, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 376, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 495, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 106, in init_process
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/base.py", line 114, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 62, in load
+    return self.load_wsgiapp()
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 49, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/local/lib/python2.7/dist-packages/gunicorn/util.py", line 354, in import_app
+    __import__(module)
+  File "/workdisk/www/flaskblog/run.py", line 1, in <module>
+    from app import app
+  File "/workdisk/www/flaskblog/app/__init__.py", line 20, in <module>
+    from app.main.controllers import main as main_module
+  File "/workdisk/www/flaskblog/app/main/controllers.py", line 13, in <module>
+    from app.models.forms import CommentForm
+  File "/workdisk/www/flaskblog/app/models/forms.py", line 36, in <module>
+    class PostForm(Form):
+  File "/workdisk/www/flaskblog/app/models/forms.py", line 39, in PostForm
+    category_id = SelectField(u'文章分类', choices=[(c.id, c.title) for c in Category.query.order_by('id').all()], coerce=int)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2292, in all
+    return list(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2404, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2417, in _execute_and_instances
+    close_with_result=True)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/query.py", line 2408, in _connection_from_session
+    **kw)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 843, in connection
+    close_with_result=close_with_result)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 847, in _connection_for_bind
+    return self.transaction._connection_for_bind(engine)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/orm/session.py", line 315, in _connection_for_bind
+    conn = bind.contextual_connect()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/base.py", line 1729, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 332, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 626, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 433, in checkout
+    rec = pool._do_get()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 945, in _do_get
+    return self._create_connection()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 278, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 404, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/pool.py", line 527, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/strategies.py", line 95, in connect
+    connection_invalidated=invalidated
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/util/compat.py", line 185, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/strategies.py", line 89, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/dist-packages/sqlalchemy/engine/default.py", line 376, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: YES)") None None
+2014-07-15 09:38:20 [4643] [INFO] Worker exiting (pid: 4643)
+2014-07-15 09:38:20 [4637] [INFO] Shutting down: Master
+2014-07-15 09:38:20 [4637] [INFO] Reason: Worker failed to boot.
