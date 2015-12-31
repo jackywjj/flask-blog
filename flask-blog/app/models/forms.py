@@ -46,7 +46,4 @@ class PhotoForm(Form):
 	title = TextField(u'标题')
 	album_id = SelectField(u'相册', choices=[(c.id, c.title) for c in Album.query.order_by('id').all()], coerce=int)
 	photo_image = FileField(u'图片')
-	
-class CommentForm(Form):
-	user_name = TextField(u'姓名', [ validators.Required(message=u"请填写姓名。") ])
-	message = TextAreaField(u'评论内容', [ validators.Required(message=u"请填写评论内容。") ])
+

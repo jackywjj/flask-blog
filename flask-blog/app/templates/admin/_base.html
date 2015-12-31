@@ -23,17 +23,12 @@
 		<a class="navbar-brand navbar-link pull-right" href="{{ url_for('admin.adminLogout') }}">登出</a>
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
-				<li {% if '/dashboard' in request.url_rule.rule %} class="active" {% endif %}>
-					<a href="{{ url_for('admin.categoryIndex') }}"><i class="fa fa-dashboard"></i> 仪表盘</a>
-				</li>
+				<li>&nbsp;</li>
 				<li {% if '/category' in request.url_rule.rule %} class="active" {% endif %}>
 					<a href="{{ url_for('admin.categoryIndex') }}"><i class="fa fa-list"></i> 博客分类</a>
 				</li>
 				<li {% if '/post' in request.url_rule.rule %} class="active" {% endif %}>
 					<a href="{{ url_for('admin.postIndex') }}"><i class="fa fa-font"></i> 博客文章</a>
-				</li>
-				<li {% if '/comment' in request.url_rule.rule %} class="active" {% endif %}>
-					<a href="{{ url_for('admin.commentIndex') }}"><i class="fa fa-comments"></i> 文章评论</a>
 				</li>
 				<li {% if '/viewlog' in request.url_rule.rule %} class="active" {% endif %}>
 					<a href="{{ url_for('admin.viewlogIndex') }}"><i class="fa fa-font"></i> 文章阅读记录</a>

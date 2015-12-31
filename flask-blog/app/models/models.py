@@ -105,19 +105,7 @@ class Post(Base):
 			return dir + self.post_image
 		else:
 			return False
-	def renderCommentCount(self):
-		return Comment.query.filter_by(post_id=self.id).count()
 
-class Comment(Base):
-	__tablename__ = 'comments'
-	user_name = db.Column(db.String(255),  nullable=False)
-	message = db.Column(db.Text(),  nullable=False)
-	post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
-	post = relationship("Post", order_by="Post.id", backref="comment")
-	def __init__(self, user_name, message, post_id):
-		self.user_name      = user_name
-		self.message    	= message
-		self.post_id    	= post_id
 
 class Viewlog(Base):
 	__tablename__ = 'viewlog'

@@ -1,6 +1,7 @@
 {% extends "admin/_base.html" %}
 {% block head %}
 	{{ super() }}
+	<script type="text/javascript" src="{{ url_for('static', filename='js/ckeditor/ckeditor.js') }}"></script>
 {% endblock %}
 {% block content %}
 <h2>博客文章 <small>编辑</small></h2>

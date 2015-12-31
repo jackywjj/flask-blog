@@ -6,11 +6,9 @@ from flask import request
 from werkzeug.contrib.atom import AtomFeed
 from config import POSTS_PER_PAGE
 from flask.ext.paginate import Pagination
-from flaskext.markdown import Markdown
-import markdown
 from app import db
 from app.models.models import *
-from app.models.forms import CommentForm
+
 main = Blueprint('main', __name__, url_prefix='/')
 
 @main.route('')
@@ -55,26 +53,21 @@ def detail(id):
 	except ValueError:
 		print "nonononono"
 		post = Post.query.filter_by(perma_link=id).one()
-	
-	form = CommentForm(request.form)
-	if request.method == "POST" and form.validate():
-		comment = Comment(form.user_name.data, form.message.data, post.id)
-		db.session.add(comment)
-		db.session.commit()
-		flash(u'感谢您的留言！')
-		return redirect(url_for('main.detail', id=id))
 
-	comments = Comment.query.filter_by(post_id=post.id).order_by("-id").all()
 	#update view count
 	post.view_count = post.view_count + 1
 	db.session.commit()
 	
 	ip = request.remote_addr
+	if request.headers.getlist("X-Forwarded-For"):
+		ip = request.headers.getlist("X-Forwarded-For")[0]
+	else:
+		ip = request.remote_addr
 	viewlogModel = Viewlog(ip, post.id)
 	db.session.add(viewlogModel)
 	db.session.commit()
 	
-	return render_template("blog/detail.html", post=post, form=form, comments=comments)
+	return render_template("blog/detail.html", post=post)
 
 @main.route('album/')
 @main.route('album/<id>/')
@@ -94,7 +87,7 @@ def rssIndex():
 	feed = AtomFeed(u'树妖攻城狮的IT实验室', feed_url=request.url, url=request.url_root)
 	posts = Post.query.order_by("-id").limit(15).all()
 	for post in posts:
-		feed.add(post.title, Markup(markdown.markdown(post.content)),
+		feed.add(post.title, post.content,
 				content_type='html',
 				author='Jacky',
 				url=url_for('main.detail', id=post.id),

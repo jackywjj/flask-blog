@@ -19,13 +19,12 @@
 					<div class="post-desc-left">
 	            		<img class="blog-image" alt="{{ post.title }}" title ="{{ post.title }}" src="{{ post.renderImage() }}" />
 					</div>
-					<div class="post-desc-right">{% filter markdown %}{{ post.summary|safe }}{% endfilter %}</div>
+					<div class="post-desc-right">{{ post.summary|safe }}</div>
 					{% else %}
-					{% filter markdown %}{{ post.summary|safe }}{% endfilter %}
+					{{ post.summary|safe }}
 					{% endif %}
 					<br />
 					<div class="clearfix">
-						<a target="_blank" href="/blog/{{ post.id }}/#comment" class="pull-left hrefspace">评论数 ：{{ post.renderCommentCount() }}</a>
 						<span class="pull-left">阅读数 ：{{ post.view_count }}</span>
 						<a target="_blank" href="/blog/{{ post.id }}/" class="pull-right">阅读更多...</a>
 					</div>
